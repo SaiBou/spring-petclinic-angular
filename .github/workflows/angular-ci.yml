@@ -14,7 +14,6 @@ jobs:
     strategy:
       matrix:
         node-version: [20.0]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v2
@@ -28,7 +27,7 @@ jobs:
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v2
       with: 
-        app-name: ${{ vars.AZURE_WEBAPP_NAME }} # Replace with your app name
+        app-name: ${{ vars.AZURE_WEBAPP_NAME }}
         package: '${{ vars.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
 
     - name: Use Node.js ${{ matrix.node-version }}
@@ -37,7 +36,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
-    - name : Install Dependencies
+    - name: Install Dependencies
       run: npm ci
 
     - name: Build
